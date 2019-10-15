@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     //MARK: - Properties
 
     lazy var linearView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 45, y: 150, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 45, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeInView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 135, y: 150, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 135, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeOutView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 225, y: 150, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 225, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeInOutView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 315, y: 150, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 315, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -49,14 +49,30 @@ class ViewController: UIViewController {
     }()
 
     lazy var animateButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 300, y: 810, width: 100, height: 24))
+        let button = UIButton(frame: CGRect(x: 300, y: 800, width: 100, height: 24))
         button.backgroundColor = .lightGray
         button.setTitle("ANIMATE", for: .normal)
-        button.addTarget(self, action: #selector(animatePressed), for: .allTouchEvents)
+        button.addTarget(self, action: #selector(animatePressed(sender:)), for: .touchUpInside)
         return button
     }()
     
-    @objc func animatePressed(_ sender: UIButton) {
+    lazy var startButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 170, y: 820, width: 100, height: 24))
+        button.backgroundColor = .red
+        button.setTitle("START", for: .normal)
+        button.addTarget(self, action: #selector(startPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var resetButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 30, y: 800, width: 100, height: 24))
+        button.backgroundColor = .lightGray
+        button.setTitle("R E S E T", for: .normal)
+        button.addTarget(self, action: #selector(resetPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func animatePressed(sender: UIButton) {
         UIView.animate(withDuration: 1.5, animations: {
             self.linearView.transform = CGAffineTransform(translationX: 0, y: 600)
         })
@@ -69,7 +85,28 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseInOut, animations: {
             self.easeInOutView.transform = CGAffineTransform(translationX: 0, y: 600)
         })
+    }
+    @objc func startPressed(sender: UIButton){
+        UIView.animate(withDuration: 1, animations: {
+            self.linearView.transform = CGAffineTransform.identity
+        })
+        UIView.animate(withDuration: 1, animations: {
+            self.easeInView.transform = CGAffineTransform.identity
+        })
+        UIView.animate(withDuration: 1, animations: {
+            self.easeOutView.transform = CGAffineTransform.identity
+        })
+        UIView.animate(withDuration: 1, animations: {
+            self.easeInOutView.transform = CGAffineTransform.identity
+        })
+    }
+    @objc func resetPressed(sender: UIButton){
+
         
+//        self.viewOneCenterYConstraint.constant = -200
+//        self.viewTwoCenterYConstraint.constant = -200
+//        self.viewThreeCenterYConstraint.constant = -200
+//        self.viewFourCenterYConstraint.constant = -200
     }
 
     override func viewDidLoad() {
@@ -80,6 +117,8 @@ class ViewController: UIViewController {
         self.view.addSubview(easeInView)
         self.view.addSubview(easeOutView)
         self.view.addSubview(easeInOutView)
+        self.view.addSubview(resetButton)
+        self.view.addSubview(startButton)
     }
 }
 
