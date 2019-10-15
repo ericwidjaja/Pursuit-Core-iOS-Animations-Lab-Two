@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     //MARK: - Properties
 
     lazy var linearView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 45, y: 120, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 35, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeOutView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 225, y: 120, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 235, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeInOutView: UIImageView = {
-        let view = UIImageView(frame: CGRect(x: 315, y: 120, width: 55, height: 55))
+        let view = UIImageView(frame: CGRect(x: 335, y: 120, width: 55, height: 55))
         view.image = #imageLiteral(resourceName: "beach-ball.png")
         var frame = view.frame
         view.frame = frame
@@ -70,8 +70,9 @@ class ViewController: UIViewController {
     }()
     
     lazy var linear: UIButton = {
-        let button = UIButton(frame: CGRect(x: 30, y: 80, width: 75, height: 32))
+        let button = UIButton(frame: CGRect(x: 20, y: 80, width: 80, height: 32))
         button.setTitle("Linear", for: .normal)
+        button.backgroundColor = .darkGray
         button.setTitleColor(.white, for: .normal)
         button.tag = 0
         button.addTarget(self, action: #selector(disappearButton(sender:)), for: .touchUpInside)
@@ -79,8 +80,9 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeIn: UIButton = {
-        let button = UIButton(frame: CGRect(x: 125, y: 80, width: 75, height: 32))
-        button.setTitle("Ease In", for: .normal)
+        let button = UIButton(frame: CGRect(x: 120, y: 80, width: 80, height: 32))
+        button.setTitle("Ease  In", for: .normal)
+        button.backgroundColor = .darkGray
         button.setTitleColor(.white, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(disappearButton(sender:)), for: .touchUpInside)
@@ -88,8 +90,9 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeOut: UIButton = {
-        let button = UIButton(frame: CGRect(x: 215, y: 80, width: 75, height: 32))
-        button.setTitle("Ease Out", for: .normal)
+        let button = UIButton(frame: CGRect(x: 220, y: 80, width: 80, height: 32))
+        button.setTitle("Ease  Out", for: .normal)
+        button.backgroundColor = .darkGray
         button.setTitleColor(.white, for: .normal)
         button.tag = 2
         button.addTarget(self, action: #selector(disappearButton(sender:)), for: .touchUpInside)
@@ -97,8 +100,9 @@ class ViewController: UIViewController {
     }()
     
     lazy var easeInOut: UIButton = {
-        let button = UIButton(frame: CGRect(x: 310, y: 80, width: 75, height: 32))
-        button.setTitle("In/Out", for: .normal)
+        let button = UIButton(frame: CGRect(x: 320, y: 80, width: 80, height: 32))
+        button.setTitle("In or Out", for: .normal)
+        button.backgroundColor = .darkGray
         button.setTitleColor(.white, for: .normal)
         button.tag = 3
         button.addTarget(self, action: #selector(disappearButton(sender:)), for: .touchUpInside)
@@ -135,12 +139,13 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 1, animations: {
             self.easeInOutView.transform = CGAffineTransform.identity
         })
+        
     }
     
     
     @objc func disappearButton(sender: UIButton) {
-      let arr = [linearView, easeInView, easeOutView ,easeInOutView]
-          for i in arr{
+      let viewArr = [linearView, easeInView, easeOutView ,easeInOutView]
+          for i in viewArr{
               if i.tag == sender.tag && !i.isHidden{
                   i.isHidden = true
               }else if i.tag == sender.tag && i.isHidden  {
